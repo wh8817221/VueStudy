@@ -11,10 +11,13 @@ Vue.use(VueRouter);
 // import 'bootstrap/dist/css/bootstrap.css';
 
 //导入mintui组件
-import { Header, Tabbar, TabItem } from 'mint-ui';
+import { Header, Tabbar, TabItem,  Swipe, SwipeItem} from 'mint-ui';
 Vue.component(Header.name, Header);
 Vue.component(Tabbar.name, Tabbar);
 Vue.component(TabItem.name, TabItem);
+
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
 
 //导入MUI的样式
 import './lib/mui/css/mui.min.css';
