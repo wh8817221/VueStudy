@@ -2,10 +2,9 @@ import Vue from 'vue';
 
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
-// //导入vue-router包
-// import VueRouter from 'vue-router';
-// //手动安装VueRouter
-// Vue.use(VueRouter);
+
+import VueResource from 'vue-resource';
+Vue.use(VueResource)
 
 //导入bootstrap样式
 // import 'bootstrap/dist/css/bootstrap.css';

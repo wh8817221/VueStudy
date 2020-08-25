@@ -24,7 +24,7 @@ module.exports = {
     module: { //配置所有第三方loader
         rules:[ //第三方模块的匹配规则
             { test: /\.css$/, use: ['style-loader', 'css-loader'] }, //处理cell文件的loader
-            { test: /\.(jpg|png|gif|bmp|jpeg)$/, use: 'url-loader?limit=5000&name=[hash:8]-[name].[ext]' }, //处理 图片路径的 loader
+            { test: /\.(jpg|png|gif|bmp|jpeg)$/, use: 'url-loader?limit=5000&name=[hash:8]-[name].[ext]&esModule=false' }, //处理 图片路径的 loader  在url-loader内部封装了file-loader ，而file-loader在新版本中esModule属性默认为true 即默认使用ES模块语法导致了造成了引用图片文件的方式和以前的版本不一样了。所以需要关闭ES模块语法。
              // limit 给定的值，是图片的大小，单位是 byte， 如果我们引用的 图片，大于或等于给定的 limit值，则不会被转为base64格式的字符串， 如果 图片小于给定的 limit 值，则会被转为 base64的字符串
             { test: /\.(ttf|eot|svg|woff|woff2)$/, use: 'url-loader' },//处理字体文件的loader
             { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }, //配置bebel来转换高级的ES语法
