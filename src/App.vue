@@ -48,14 +48,13 @@ export default {
 <style lang="css" scoped>
 .appContainer{
     padding-top: 40px;
-    padding-bottom: 49px;
+    padding-bottom: 50px;
     overflow-x: hidden;
 }
 .v-enter{
    opacity: 0;
    transform: translateX(100%); 
 }
-
 .v-leave-to{
    opacity: 0;
    transform: translateX(-100%); 

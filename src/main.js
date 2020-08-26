@@ -28,7 +28,6 @@ Vue.component(Button.name, Button);
 import './lib/mui/css/mui.min.css';
 import './lib/mui/css/icons-extra.css';
 
-
 //导入app组件
 import app from './App.vue';
 
