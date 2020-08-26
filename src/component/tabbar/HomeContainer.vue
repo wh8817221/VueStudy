@@ -11,10 +11,10 @@
     <!-- 九宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/newslist">
           <img src="../../images/menu1.png" alt="">
           <div class="mui-media-body">新闻资讯</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
@@ -61,6 +61,7 @@ export default {
     this.getBanners();
   },
   methods: {
+      
     getBanners() {
       this.banners = [
         {
@@ -82,7 +83,7 @@ export default {
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598330689016&di=972e2125f75255bab4ce3f8795ef09c1&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3D2485189c9a504fc2a25fb00dd5dce7f0%2Fdc1f7b899e510fb3048fe303d833c895d3430ce5.jpg",
         },
       ];
-      // this.$http.get('http://vue.sutdyit.io/api/getlunbo').then(result => {
+      // this.$http.get('api/getlunbo').then(result => {
       //     console.log(result.body);
       // })
     },
@@ -96,6 +97,7 @@ export default {
 .swip_banner img {
   width: 100%;
   height: 100%;
+  
 }
 .mui-grid-view.mui-grid-9 {
     background-color: white;

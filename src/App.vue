@@ -48,6 +48,7 @@ export default {
 <style lang="css" scoped>
 .appContainer{
     padding-top: 40px;
+    padding-bottom: 49px;
     overflow-x: hidden;
 }
 .v-enter{

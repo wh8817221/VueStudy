@@ -5,19 +5,25 @@ Vue.use(VueRouter);
 
 import VueResource from 'vue-resource';
 Vue.use(VueResource)
-
+//全局配置baseUrl
+Vue.http.options.root = "http://vue.studyit.io";
 //导入bootstrap样式
 // import 'bootstrap/dist/css/bootstrap.css';
 
+import moment from 'moment';
+//定义全局过滤器
+Vue.filter('dateFormat', function(dateStr, pattern="YYYY-MM-DD  HH:mm:ss"){
+    return moment(dateStr).format(pattern);
+});
+
 //导入mintui组件
-import { Header, Tabbar, TabItem,  Swipe, SwipeItem} from 'mint-ui';
+import { Header, Tabbar, TabItem,  Swipe, SwipeItem, Button} from 'mint-ui';
 Vue.component(Header.name, Header);
 Vue.component(Tabbar.name, Tabbar);
 Vue.component(TabItem.name, TabItem);
-
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
-
+Vue.component(Button.name, Button);
 //导入MUI的样式
 import './lib/mui/css/mui.min.css';
 import './lib/mui/css/icons-extra.css';
