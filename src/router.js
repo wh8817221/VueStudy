@@ -8,6 +8,10 @@ import NewsInfo from './component/news/NewsInfo.vue';
 import PhotoList from './component/photos/PhotoList.vue';
 import PhotoInfo from './component/photos/PhotoInfo.vue';
 import GoodsList from './component/goodslist/GoodsList.vue';
+import GoodsInfo from './component/goodslist/GoodsInfo.vue';
+
+import GoodsDec from './component/goodslist/GoodsDec.vue';
+import GoodsComment from './component/goodslist/GoodsComment.vue';
 var router = new VueRouter({
     routes: [ //配置路由
         { path: '/', redirect: '/home' },//重定向
@@ -20,7 +24,10 @@ var router = new VueRouter({
         { path: '/home/photolist', component: PhotoList },
         { path: '/home/photoinfo/:id', component: PhotoInfo },
         { path: '/home/goodslist', component: GoodsList },
-        
+        { path: '/home/goodsinfo', component: GoodsInfo, name: 'goodsinfo' },
+        { path: '/home/goodsinfo', component: GoodsDec, name: 'goodsdec' },
+        { path: '/home/goodsinfo', component: GoodsComment, name: 'goodscomment' },
+         
     ],
     linkExactActiveClass: 'mui-active'
 });

@@ -1,6 +1,6 @@
 <template>
   <div class="goods-list">
-    <div class="goods-item" v-for="item in goodsList" :key="item.id">
+    <router-link class="goods-item" v-for="(item,i) in goodsList" :key="i" to="/home/goodsinfo">
       <img
         :src="item.img_url"
         alt
@@ -16,7 +16,8 @@
           <span>剩余{{ item.surplus }}件</span>
         </p>
       </div>
-    </div>
+    </router-link>
+    <mt-button type="danger" size="large" @click="getMore">加载更多</mt-button>
   </div>
 </template>
 <script>
@@ -30,6 +31,18 @@ export default {
       this.getGoodsList();
   },
   methods: {
+      getMore(){
+          var good = {
+                      id: 10,
+                      img_url: "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1597145894.51396359.jpg",
+                      title: "小米10至尊纪念版",
+                      old: "3000",
+                      now: "2999",
+                      hot: "热卖中",
+                      surplus: 60,
+                  }
+          this.goodsList.push(good);
+      },
       getGoodsList(){
           this.$networkTools.get('', ()=>{
               this.goodsList = [

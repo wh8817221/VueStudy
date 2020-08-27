@@ -1,13 +1,7 @@
 <template>
   <div>
     <!-- 轮播图 -->
-    <div class="swip_banner">
-      <mt-swipe :auto="2000">
-        <mt-swipe-item v-for="item in banners" :key="item.url">
-          <img :src="item.img" alt />
-        </mt-swipe-item>
-      </mt-swipe>
-    </div>
+    <swiper :banners="banners" :isFull="true"></swiper>
     <!-- 九宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -47,18 +41,21 @@
         </a>
       </li>
     </ul>
-    
   </div>
 </template>
 <script>
+import swiper from '../subcomponent/Swiper.vue';
 export default {
   data() {
     return {
-      banners: null,
+      banners: [],
     };
   },
   created() {
     this.getBanners();
+  },
+  components: {
+    swiper
   },
   methods: {
       
