@@ -2,7 +2,7 @@
     <div class="cmt-container">
         <h3>发表评论</h3>
         <hr>
-        <textarea placeholder="请输入要BB的内容(最多吐槽120个字)" maxlength="120"></textarea>
+        <textarea placeholder="请输入要BB的内容(最多吐槽120个字)" maxlength="120" v-model="comment"></textarea>
         <mt-button type="primary" size="large" @click="submitComment">发票评论</mt-button>
         <div class="cmt-list">
             <div class="cmt-item" v-for="(item,i) in commentList" :key="i">
@@ -18,12 +18,13 @@
     </div>
 </template>
 <script>
-import NetworkTools from '../../js/NetworkTools.js';
+
 export default {
     data(){
         return {
             commentList: [],
             pageIndex: 1, //默认展示第一页
+            comment: '',
         }
     },
     created(){
@@ -34,7 +35,7 @@ export default {
     ],
     methods:{
         loadMore(){
-            NetworkTools.getRequestData('',() => {
+            this.$networkTools.getRequestData('',() => {
                 this.pageIndex++;
                 var list = [
                     {user_name: "小3", add_time: new Date(), content: "锄禾日当午,扮猪吃老虎!!!!!"},
@@ -45,10 +46,24 @@ export default {
         },
         // 提交评论
         submitComment(){
+            // if (this.comment.trim().length === 0) {
+            //     return HUD.showHUD('评论内容不能为空');
+            // }
+            //空格
+            if (this.$stringIsEmpty(this.comment)){
+                return this.$hud.showHUD('评论内容不能为空');
+            }
+            //评论发表请求
+            this.$networkTools.getRequestData('', ()=>{
+                this.commentList.unshift({
+                    user_name: "浩哥", add_time: new Date(), content: this.comment
+                });
+                this.comment = '';
+            });
         },
         //获取评论列表
         getCommentList(){
-            NetworkTools.getRequestData("api/getcomments/"+this.id+"?pageindex="+this.id,() => {
+            this.$networkTools.getRequestData("api/getcomments/"+this.id+"?pageindex="+this.id,() => {
                 this.commentList = [
                     {user_name: "小二", add_time: new Date(), content: "锄禾日当午,扮猪吃老虎!!!!!"},
                     {user_name: "小二", add_time: new Date(), content: "锄禾日当午,扮猪吃老虎!!!!!"},

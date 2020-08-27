@@ -15,7 +15,6 @@
 </template>
 <script>
 import comment from '../subcomponent/Comment.vue';
-
 export default {
     data(){
         return {

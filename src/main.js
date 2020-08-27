@@ -7,23 +7,47 @@ import VueResource from 'vue-resource';
 Vue.use(VueResource)
 //全局配置baseUrl
 Vue.http.options.root = "http://vue.studyit.io";
+Vue.http.options.emulateJSON = true;
 //导入bootstrap样式
 // import 'bootstrap/dist/css/bootstrap.css';
 
-import moment from 'moment';
 //定义全局过滤器
-Vue.filter('dateFormat', function(dateStr, pattern="YYYY-MM-DD  HH:mm:ss"){
+import moment from 'moment';
+Vue.filter('dateFormat', function (dateStr, pattern = "YYYY-MM-DD  HH:mm:ss") {
     return moment(dateStr).format(pattern);
 });
 
+//定义全局函数
+import all from './js/Common.js';
+Vue.use(all);//将全局函数当做插件来进行注册
+
 //导入mintui组件
-import { Header, Tabbar, TabItem,  Swipe, SwipeItem, Button} from 'mint-ui';
-Vue.component(Header.name, Header);
-Vue.component(Tabbar.name, Tabbar);
-Vue.component(TabItem.name, TabItem);
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
-Vue.component(Button.name, Button);
+// import { Header, Tabbar, TabItem, Swipe, SwipeItem, Button, Lazyload } from 'mint-ui';
+// Vue.component(Header.name, Header);
+// Vue.component(Tabbar.name, Tabbar);
+// Vue.component(TabItem.name, TabItem);
+// Vue.component(Swipe.name, Swipe);
+// Vue.component(SwipeItem.name, SwipeItem);
+// Vue.component(Button.name, Button);
+// Vue.use(Lazyload);
+//导入全局mint-ui组件
+import 'mint-ui/lib/style.css';
+import MintUI from 'mint-ui';
+Vue.use(MintUI);
+//导入图片预览组件
+import VuePreview from 'vue-preview';
+// Vue.use(VuePreview);
+Vue.use(VuePreview, {
+    mainClass: 'pswp--minimal--dark',
+    barsSize: { top: 0, bottom: 0 },
+    captionEl: false,
+    fullscreenEl: false,
+    shareEl: false,
+    bgOpacity: 0.85,
+    tapToClose: true,
+    tapToToggleControls: false
+});
+
 //导入MUI的样式
 import './lib/mui/css/mui.min.css';
 import './lib/mui/css/icons-extra.css';
