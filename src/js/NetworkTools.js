@@ -1,7 +1,7 @@
 import { Toast, Indicator } from 'mint-ui';
 
 class NetworkTools {
-    getRequestData(url, success, failed, isShowLoading=true) {
+    get(url, success, failed, isShowLoading=true) {
         if (isShowLoading) {
             Indicator.open({
                 text: '加载中...',
@@ -34,7 +34,7 @@ class NetworkTools {
 
 export default new NetworkTools();
 
-// function getRequestData(url, success, failed) {
+// function get(url, success, failed) {
 //     Indicator.open({
 //         text: '加载中...',
 //         spinnerType: 'fading-circle'

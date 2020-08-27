@@ -11,7 +11,7 @@
             :class="['mui-control-item', item.id == 0 ? 'mui-active' : '']"
             v-for="item in catogorys"
             :key="item.id"
-            @click="getPhotoList(item.id)"
+            @tap="getPhotoList(item.id)"
           >{{ item.title }}</a>
         </div>
       </div>
@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     getCatogorys() {
-      this.$networkTools.getRequestData("", () => {
+      this.$networkTools.get("", () => {
         var arr = [
           { id: 0, 
             title: "全部" 
@@ -89,7 +89,7 @@ export default {
       });
     },
     getPhotoList(id) {
-      this.$networkTools.getRequestData("api/getimages/" + id, () => {
+      this.$networkTools.get("api/getimages/" + id, () => {
         this.images = [
           {
             id: 1,

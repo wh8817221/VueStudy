@@ -35,7 +35,7 @@ export default {
     ],
     methods:{
         loadMore(){
-            this.$networkTools.getRequestData('',() => {
+            this.$networkTools.get('',() => {
                 this.pageIndex++;
                 var list = [
                     {user_name: "小3", add_time: new Date(), content: "锄禾日当午,扮猪吃老虎!!!!!"},
@@ -54,7 +54,7 @@ export default {
                 return this.$hud.showHUD('评论内容不能为空');
             }
             //评论发表请求
-            this.$networkTools.getRequestData('', ()=>{
+            this.$networkTools.get('', ()=>{
                 this.commentList.unshift({
                     user_name: "浩哥", add_time: new Date(), content: this.comment
                 });
@@ -63,7 +63,7 @@ export default {
         },
         //获取评论列表
         getCommentList(){
-            this.$networkTools.getRequestData("api/getcomments/"+this.id+"?pageindex="+this.id,() => {
+            this.$networkTools.get("api/getcomments/"+this.id+"?pageindex="+this.id,() => {
                 this.commentList = [
                     {user_name: "小二", add_time: new Date(), content: "锄禾日当午,扮猪吃老虎!!!!!"},
                     {user_name: "小二", add_time: new Date(), content: "锄禾日当午,扮猪吃老虎!!!!!"},

@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     getNewsList() {
-      this.$networkTools.getRequestData("api/getnewslist", () => {
+      this.$networkTools.get("api/getnewslist", () => {
         this.newsList = [
           {
             id: 1,

@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     getPhotoInfo() {
-      this.$networkTools.getRequestData("api/getimageInfo/" + this.id, () => {
+      this.$networkTools.get("api/getimageInfo/" + this.id, () => {
         this.photoInfo = {
           add_time: new Date(),
           click: 0,
