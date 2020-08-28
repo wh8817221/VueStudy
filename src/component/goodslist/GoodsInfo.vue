@@ -1,5 +1,9 @@
 <template>
   <div class="good-info">
+    <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+      <div class="ball" v-show="ballFlag" ref="ball"></div>
+    </transition>
+
     <!-- 轮播图区域 -->
     <div class="mui-card">
       <div class="mui-card-content">
@@ -19,11 +23,11 @@
           </p>
           <div class="good-buy">
             购买数量:
-            <numberbox></numberbox>
+            <numberbox @getCount="getSelectedCount" :max="maxCount"></numberbox>
           </div>
           <p>
             <mt-button type="primary" size="small">立即购买</mt-button>
-            <mt-button type="danger" size="small">加入购物车</mt-button>
+            <mt-button type="danger" size="small" @click="addShopCar">加入购物车</mt-button>
           </p>
         </div>
       </div>
@@ -34,7 +38,7 @@
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
           <p>商品编号: 202802930903290</p>
-          <p>库存情况: 60件</p>
+          <p>库存情况: {{ maxCount }}件</p>
           <p>上架时间: 2020-09-09</p>
         </div>
       </div>
@@ -51,7 +55,11 @@ import numberbox from "../subcomponent/GoodsInfoNumbox.vue";
 export default {
   data() {
     return {
+      id: this.$route.params.id,
       banners: [],
+      ballFlag: false,
+      selectedCount: 1, //用户购买数
+      maxCount: 60,
     };
   },
   created() {
@@ -84,18 +92,46 @@ export default {
       // })
     },
     //去图文介绍
-    goDec(id){
-        this.$router.push({
-            name: "goodsdec",
-            // params: {id}
-        });
+    goDec(id) {
+      this.$router.push({
+        name: "goodsdec",
+        params: { id },
+      });
     },
     //去商品评论评论
-    goComment(id){
-        this.$router.push({
-            name: "goodscomment",
-            // params: {id}
-        });
+    goComment(id) {
+      this.$router.push({
+        name: "goodscomment",
+        // params: {id}
+      });
+    },
+    //加入到购物车
+    addShopCar() {
+      this.ballFlag = true;
+    },
+    getSelectedCount(count) {
+      console.log(count);
+      this.selectedCount = count;
+    },
+    beforeEnter(el) {
+      el.style.transform = "translate(0, 0)";
+    },
+    enter(el, done) {
+      el.offsetWidth;
+      //计算便宜位置
+      const ballRect = this.$refs.ball.getBoundingClientRect();
+      const badgeRect = document
+        .getElementById("shopcar-badge")
+        .getBoundingClientRect();
+      const offsetX = badgeRect.left - ballRect.left;
+      const offsetY = badgeRect.top - ballRect.top;
+
+      el.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+      el.style.transition = "all 0.5s cubic-bezier(0.4, -0.3, 1, 0.68)";
+      done();
+    },
+    afterEnter(el) {
+      this.ballFlag = false;
     },
   },
   components: {
@@ -108,6 +144,7 @@ export default {
 .good-info {
   background-color: #eee;
   overflow: hidden;
+  position: relative;
 }
 .swip_banner {
   height: 200px;
@@ -124,10 +161,19 @@ export default {
   font-size: 16px;
   font-weight: bold;
 }
-.mui-card-footer{
-    display: flex;
-    flex-direction: column;
-    height: 115px;
+.mui-card-footer {
+  display: flex;
+  flex-direction: column;
+  height: 115px;
 }
-
+.ball {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+  z-index: 99;
+  top: 355px;
+  left: 140px;
+}
 </style>

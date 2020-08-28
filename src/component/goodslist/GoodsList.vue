@@ -1,6 +1,6 @@
 <template>
   <div class="goods-list">
-    <router-link class="goods-item" v-for="(item,i) in goodsList" :key="i" to="/home/goodsinfo">
+    <router-link class="goods-item" v-for="(item,i) in goodsList" :key="i" :to='"/home/goodsinfo/"+item.id'>
       <img
         :src="item.img_url"
         alt
